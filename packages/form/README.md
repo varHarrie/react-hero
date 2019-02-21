@@ -15,7 +15,7 @@ yarn add @react-hero/form
 Simply create a `FormStore` and pass into `Form` component. `value` and `onChange` of form controls (such as `input`) are unnecessary.
 
 ```javascript
-import { Form, FormStore } from 'react-hero/form'
+import { Form, FormStore } from '@react-hero/form'
 
 class App extends React.Component {
   constructor(props) {

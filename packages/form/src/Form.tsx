@@ -14,7 +14,7 @@ export interface Props extends FormOptions {
   onSubmit?: (e: React.FormEvent) => void
 }
 
-export default function Form (props: Props) {
+function Form (props: Props) {
   const { className = '', children, store, onSubmit, ...options } = props
 
   const classNames = 'rh-form ' + className
@@ -31,3 +31,5 @@ export default function Form (props: Props) {
 }
 
 Form.Field = FormField
+
+export default Form
