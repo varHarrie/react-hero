@@ -1,6 +1,11 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "bootstrap": "npm install && lerna bootstrap",
+    "build": "lerna run build",
+    "storybook": "cd stories && npm run storybook"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -28,6 +33,7 @@
     "prettier": "^1.16.4",
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",
-    "tslint-react": "^3.6.0"
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.3.3"
   }
 }
