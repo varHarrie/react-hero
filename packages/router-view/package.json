@@ -1,0 +1,53 @@
+{
+  "name": "@react-hero/router-view",
+  "version": "0.1.0-alpha.0",
+  "description": "React component.",
+  "keywords": [
+    "react",
+    "component",
+    "router",
+    "view"
+  ],
+  "author": "varHarrie <varharrie@gmail.com>",
+  "homepage": "https://github.com/varHarrie/react-hero#readme",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "unpack": "lib/umd/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varHarrie/react-hero.git"
+  },
+  "scripts": {
+    "build": "rollup -c && tsc --emitDeclarationOnly",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/varHarrie/react-hero/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-router": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.4",
+    "@types/react-router": "^4.4.4",
+    "rollup": "^1.2.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "typescript": "^3.3.3"
+  }
+}
