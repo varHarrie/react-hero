@@ -4,7 +4,8 @@
   "scripts": {
     "bootstrap": "npm install && lerna bootstrap",
     "build": "lerna run build",
-    "storybook": "cd stories && npm run storybook"
+    "start-storybook": "cd stories && npm run start",
+    "build-storybook": "cd stories && npm run build"
   },
   "husky": {
     "hooks": {

@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "start": "start-storybook -c .storybook -p 9001",
+    "build": "build-storybook -c .storybook -o build"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^4.1.12",
