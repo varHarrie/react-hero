@@ -9,8 +9,8 @@
     "build": "build-storybook -c .storybook -o build"
   },
   "devDependencies": {
-    "@storybook/addon-knobs": "^4.1.12",
-    "@storybook/react": "^4.1.12",
+    "@storybook/addon-knobs": "^4.1.13",
+    "@storybook/react": "^4.1.13",
     "@types/storybook__addon-knobs": "^4.0.1",
     "@types/storybook__react": "^4.0.1"
   },
@@ -21,8 +21,8 @@
     "@types/react-router": "^4.4.4",
     "@types/react-router-dom": "^4.3.1",
     "history": "4.7.2",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "@react-hero/form": "file:../packages/form",
