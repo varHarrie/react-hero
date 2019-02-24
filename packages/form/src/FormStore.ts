@@ -6,6 +6,8 @@ export type FormValidator = (value: any, values: any) => boolean | string
 
 export type FormRules = { [key: string]: FormValidator }
 
+export type FormErrors = { [key: string]: string | undefined }
+
 export default class FormStore<T extends Object = any> {
   private initialValues: T
 
@@ -15,7 +17,7 @@ export default class FormStore<T extends Object = any> {
 
   private rules: FormRules
 
-  private errors: { [key: string]: string } = {}
+  private errors: FormErrors = {}
 
   public constructor (values: Partial<T> = {}, rules: FormRules = {}) {
     this.initialValues = values as any
@@ -49,32 +51,45 @@ export default class FormStore<T extends Object = any> {
     this.notify('*')
   }
 
-  public validate (): [string | undefined, T]
-  public validate (name: string): string
+  public error (): FormErrors
+  public error (name: number | string): string
+  public error (name: string, value: string | undefined): string | undefined
+  public error (...args: any[]) {
+    let [name, value] = args
+
+    if (args.length === 0) return this.errors
+
+    if (typeof name === 'number') {
+      name = Object.keys(this.errors)[name]
+    }
+
+    if (args.length === 2) {
+      if (value === undefined) {
+        delete this.error[name]
+      } else {
+        this.errors[name] = value
+      }
+    }
+
+    return this.errors[name]
+  }
+
+  public validate (): [Error | undefined, T]
+  public validate (name: string): [Error | undefined, any]
   public validate (name?: string) {
     if (name === undefined) {
       Object.keys(this.rules).forEach((n) => this.validate(n))
       this.notify('*')
-      return [this.error(), this.get()]
+      return [this.error(0), this.get()]
     }
 
     const validator = this.rules[name]
-    const result = validator ? validator(this.get(name), this.values) : true
-    const message = result === true ? undefined : result || ''
+    const value = this.get(name)
+    const result = validator ? validator(value, this.values) : true
+    const message = this.error(name, result === true ? undefined : result || '')
 
-    if (message === undefined) {
-      delete this.errors[name]
-    } else {
-      this.errors[name] = message
-    }
-
-    return message
-  }
-
-  public error (name?: string, value?: string) {
-    if (name === undefined) name = Object.keys(this.errors)[0]
-    if (value === undefined) return this.errors[name]
-    return (this.errors[name] = value)
+    const error = message === undefined ? undefined : new Error(message)
+    return [error, value]
   }
 
   public subscribe (listener: FormListener) {

@@ -107,8 +107,9 @@ const [error, values] = store.validate()
 - `store.set(name, value, false)` 根据字段名设置表单域的值，并跳过校验。
 - `store.reset()` 重置表单。
 - `store.validate()` 校验整个表单，并返回错误信息和表单值。
-- `store.validate(name)` 根据字段名校验表单域的值，并返回错误信息。
-- `store.error()` 返回第一个错误信息。
+- `store.validate(name)` 根据字段名校验表单域的值，并返回错误信息和表单值。
+- `store.error()` 返回所有错误信息。
+- `store.error(index)` 返回第 index 条错误信息。
 - `store.error(name)` 根据字段名返回错误信息。
 - `store.error(name, message)` 根据字段名设置错误信息。
 - `store.subscribe(listener)` 订阅表单变动，并返回一个用于取消订阅的函数。

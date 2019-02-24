@@ -50,7 +50,7 @@ export default function FormField (props: Props) {
 
   if (name && store && React.isValidElement(child)) {
     const prop = getPropName(valueProp, child && child.type)
-    const childProps = { ...child.props, [prop]: value, onChange }
+    const childProps = { [prop]: value, onChange }
     child = React.cloneElement(child, childProps)
   }
 

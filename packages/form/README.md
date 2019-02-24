@@ -107,8 +107,9 @@ const [error, values] = store.validate()
 - `store.set(name, value, false)` Sets field value by name without validating.
 - `store.reset()` Resets form with default values.
 - `store.validate()` Validates entire form and returns error message and values.
-- `store.validate(name)` Validates field value by name and returns error message.
-- `store.error()` Returns the first error message.
+- `store.validate(name)` Validates field value by name and returns error message and value.
+- `store.error()` Returns the all error messages.
+- `store.error(index)` Returns the nth error message.
 - `store.error(name)` Returns error message by name.
 - `store.error(name, message)` Sets error message by name.
 - `store.subscribe(listener)` Adds listener and returns unsubscribe callback.
