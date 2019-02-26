@@ -52,7 +52,7 @@ export default class FormStore<T extends Object = any> {
   }
 
   public error (): FormErrors
-  public error (name: number | string): string
+  public error (name: number | string): string | undefined
   public error (name: string, value: string | undefined): string | undefined
   public error (...args: any[]) {
     let [name, value] = args
@@ -65,7 +65,7 @@ export default class FormStore<T extends Object = any> {
 
     if (args.length === 2) {
       if (value === undefined) {
-        delete this.error[name]
+        delete this.errors[name]
       } else {
         this.errors[name] = value
       }
@@ -80,16 +80,19 @@ export default class FormStore<T extends Object = any> {
     if (name === undefined) {
       Object.keys(this.rules).forEach((n) => this.validate(n))
       this.notify('*')
-      return [this.error(0), this.get()]
+
+      const message = this.error(0)
+      const error = message === undefined ? undefined : new Error(message)
+      return [error, this.get()]
+    } else {
+      const validator = this.rules[name]
+      const value = this.get(name)
+      const result = validator ? validator(value, this.values) : true
+      const message = this.error(name, result === true ? undefined : result || '')
+
+      const error = message === undefined ? undefined : new Error(message)
+      return [error, value]
     }
-
-    const validator = this.rules[name]
-    const value = this.get(name)
-    const result = validator ? validator(value, this.values) : true
-    const message = this.error(name, result === true ? undefined : result || '')
-
-    const error = message === undefined ? undefined : new Error(message)
-    return [error, value]
   }
 
   public subscribe (listener: FormListener) {
