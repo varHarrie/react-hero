@@ -7,7 +7,8 @@ import { Form, FormStore } from '@react-hero/form'
 storiesOf('Components', module).add('Form', () => {
   const store = new FormStore(
     {
-      name: 'Default',
+      username: 'Default',
+      password: '',
       gender: 'male',
       contact: {
         phone: '',
@@ -46,8 +47,11 @@ storiesOf('Components', module).add('Form', () => {
       labelWidth={number('Label Width', 120)}
       gutter={number('Gutter', 20)}
     >
-      <Form.Field label='Name' name='name'>
+      <Form.Field label='Username' name='username'>
         <input type='text' />
+      </Form.Field>
+      <Form.Field label='Password' name='password'>
+        <input type='password' />
       </Form.Field>
       <Form.Field label='Gender' name='gender'>
         <select>
