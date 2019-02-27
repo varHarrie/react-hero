@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean, number } from '@storybook/addon-knobs'
-
 import { Form, FormStore } from '@react-hero/form'
 
 storiesOf('Components', module).add('Form', () => {
@@ -16,7 +15,7 @@ storiesOf('Components', module).add('Form', () => {
       }
     },
     {
-      name: (val) => !!val.trim() || 'Name is required',
+      username: (val) => !!val.trim() || 'Name is required',
       'contact.phone': (val) => /[0-9]{11}/.test(val) || 'Phone is invalid',
       'contact.address': (val) => !!val.trim() || 'Address is required'
     }
