@@ -28,7 +28,7 @@ export default function FormField (props: Props) {
   const store = React.useContext(FormStoreContext)
   const options = React.useContext(FormOptionsContext)
   const [value, setValue] = React.useState(name && store ? store.get(name) : undefined)
-  const [error, setError] = React.useState<string | undefined>(undefined)
+  const [error, setError] = React.useState(name && store ? store.error(name) : undefined)
 
   const onChange = React.useCallback(
     (...args: any[]) => name && store && store.set(name, valueGetter(...args)),
