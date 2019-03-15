@@ -10,11 +10,11 @@ type ModalData = {
 
 export interface Props {
   children: React.ReactNode
+  container?: React.ComponentType
 }
 
 export default function ModalProvider (props: Props) {
-  const { children } = props
-
+  const { children, container: Container = React.Fragment } = props
   const [modals, setModals] = React.useState<ModalData[]>([])
 
   const mount = React.useCallback((key: number, component: ModalComponent<any>) => {
@@ -42,7 +42,16 @@ export default function ModalProvider (props: Props) {
     })
   }, [])
 
+  const context = React.useMemo(() => ({ mount, unmount, show, hide }), [])
+
   return (
-    <ModalContext.Provider value={{ mount, unmount, show, hide }}>{children}</ModalContext.Provider>
+    <ModalContext.Provider value={context}>
+      {children}
+      <Container>
+        {modals.map(({ visible, payload, component: Modal }) => (
+          <Modal visible={visible} {...payload} />
+        ))}
+      </Container>
+    </ModalContext.Provider>
   )
 }
