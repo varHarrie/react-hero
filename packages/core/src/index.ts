@@ -1,4 +1,4 @@
 import Portal from './components/Portal'
-import Overlay from './components/Overlay'
+import Overlay, { OverlayEntity, OverlayMethods } from './components/Overlay'
 
-export { Portal, Overlay }
+export { Portal, Overlay, OverlayEntity, OverlayMethods }
