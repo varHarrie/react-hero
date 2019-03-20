@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "sourceRoot": ".",
+    "outDir": "lib",
+    "lib": ["dom", "es2015"],
+    "declarationDir": "lib"
+  },
+  "include": ["src"]
+}
