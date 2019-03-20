@@ -40,15 +40,18 @@ export default class Overlay<T> extends React.Component<Props<T>, State<T>> {
     }))
   }
 
-  public hide = (id: number) => {
+  public hide = (id?: number) => {
     this.setState((state) => ({
-      entities: state.entities.map((e) => (e.id === id ? { ...e, visible: false } : e))
+      entities:
+        id === undefined
+          ? state.entities.map((e) => ({ ...e, visible: false }))
+          : state.entities.map((e) => (e.id === id ? { ...e, visible: false } : e))
     }))
   }
 
-  public remove = (id: number) => {
+  public remove = (id?: number) => {
     this.setState((state) => ({
-      entities: state.entities.filter((m) => m.id !== id)
+      entities: id === undefined ? [] : state.entities.filter((m) => m.id !== id)
     }))
   }
 
