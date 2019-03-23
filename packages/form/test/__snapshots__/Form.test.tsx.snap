@@ -88,3 +88,13 @@ exports[`Form should render correctly 3`] = `
   </div>
 </form>
 `;
+
+exports[`Item should render correctly 1`] = `
+<form
+  class="rh-form "
+>
+  <input
+    type="text"
+  />
+</form>
+`;

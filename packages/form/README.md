@@ -45,6 +45,30 @@ class App extends React.Component {
 }
 ```
 
+## Simple Field
+
+`Form.Item` is a Simplified version of `Form.Field`, without any extra nodes.
+
+```javascript
+<Form store={this.store}>
+  <Form.Item name='username'>
+    <input type='text' />
+  </Form.Item>
+  <Form.Item name='password'>
+    <input type='password' />
+  </Form.Item>
+</Form>
+```
+
+will renders into:
+
+```html
+<form>
+  <input type="text" />
+  <input type="password" />
+</form>
+```
+
 ## Default Values
 
 To set default values, you can pass an object as the first parameter. Use `reset()` to restore defaults at any time.
@@ -96,6 +120,13 @@ const [error, values] = store.validate()
 - `valueProp` Value prop name of child component, default to `'value'`.
 - `valueGetter` The way to parse value from change event, `optional`.
 - `suffix` Suffix nodes, `optional`.
+
+### Form Item Props
+
+- `className` Field element class name, `optional`.
+- `name` Field name, `optional`.
+- `valueProp` Value prop name of child component, default to `'value'`.
+- `valueGetter` The way to parse value from change event, `optional`.
 
 ### FormStore Methods
 

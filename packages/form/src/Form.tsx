@@ -3,6 +3,7 @@ import './style.less'
 import * as React from 'react'
 
 import FormField from './FormField'
+import FormItem from './FormItem'
 import FormStore from './FormStore'
 import FormStoreContext from './FormStoreContext'
 import FormOptionsContext, { FormOptions } from './FormOptionsContext'
@@ -31,5 +32,7 @@ function Form (props: Props) {
 }
 
 Form.Field = FormField
+
+Form.Item = FormItem
 
 export default Form

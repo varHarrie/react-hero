@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as Adapter from 'enzyme-adapter-react-16'
 import { configure, render } from 'enzyme'
 
-import { Form, FormField, FormStore } from '..'
+import { Form, FormField, FormItem, FormStore } from '..'
 
 configure({ adapter: new Adapter() })
 
@@ -45,6 +45,21 @@ describe('Field', () => {
         <div>
           <FormField label='Label' name='Name' />
         </div>
+      </Form>
+    )
+    expect(wrapper).toMatchSnapshot()
+  })
+})
+
+describe('Item', () => {
+  it('should render correctly', () => {
+    const store = new FormStore()
+
+    const wrapper = render(
+      <Form store={store}>
+        <FormItem>
+          <input type='text' />
+        </FormItem>
       </Form>
     )
     expect(wrapper).toMatchSnapshot()

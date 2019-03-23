@@ -1,7 +1,9 @@
 import * as React from 'react'
 
 import FormStoreContext from './FormStoreContext'
+import useFieldChange from './useFieldChange'
 import FormOptionsContext, { FormOptions } from './FormOptionsContext'
+import { getPropName, getValueFromEvent } from './utils'
 
 export interface Props extends FormOptions {
   className?: string
@@ -35,16 +37,10 @@ export default function FormField (props: Props) {
     [name, store, valueGetter]
   )
 
-  React.useEffect(() => {
-    if (!name || !store) return
-
-    return store.subscribe((n) => {
-      if (n === name || n === '*') {
-        setValue(store.get(name))
-        setError(store.error(name))
-      }
-    })
-  }, [name, store])
+  useFieldChange(store, name, (s, n) => {
+    setValue(s.get(n))
+    setError(s.error(n))
+  })
 
   let child: any = children
 
@@ -102,12 +98,4 @@ const classes = {
   control: 'rh-form-field__control',
   message: 'rh-form-field__message',
   footer: 'rh-form-field__footer'
-}
-
-function getPropName (valueProp: string | ((type: any) => string), type: any) {
-  return typeof valueProp === 'function' ? valueProp(type) : valueProp
-}
-
-function getValueFromEvent (e: React.ChangeEvent<any>) {
-  return e && e.target ? (e.target.type === 'checkbox' ? e.target.checked : e.target.value) : e
 }
