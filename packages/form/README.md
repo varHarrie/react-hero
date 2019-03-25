@@ -144,3 +144,9 @@ const [error, values] = store.validate()
 - `store.error(name)` Returns error message by name.
 - `store.error(name, message)` Sets error message by name.
 - `store.subscribe(listener)` Adds listener and returns unsubscribe callback.
+
+### Hooks
+
+- `useFormStore(defaultValues?, rules?)` Creates form store with hooks.
+- `useFormChange(store, onChange)` Add form listener with hooks.
+- `useFieldChange(store, onChange)` Add field listener with hooks.

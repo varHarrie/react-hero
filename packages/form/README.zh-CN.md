@@ -113,3 +113,9 @@ const [error, values] = store.validate()
 - `store.error(name)` 根据字段名返回错误信息。
 - `store.error(name, message)` 根据字段名设置错误信息。
 - `store.subscribe(listener)` 订阅表单变动，并返回一个用于取消订阅的函数。
+
+### Hooks
+
+- `useFormStore(defaultValues?, rules?)` 使用 hooks 创建 FormStore。
+- `useFormChange(store, onChange)` 使用 hooks 创建表单监听。
+- `useFieldChange(store, onChange)` 使用 hooks 创建表单域监听。
