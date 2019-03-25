@@ -9,23 +9,26 @@
     "build": "build-storybook -c .storybook -o build"
   },
   "devDependencies": {
-    "@storybook/addon-knobs": "^4.1.13",
-    "@storybook/react": "^4.1.13",
-    "@types/storybook__addon-knobs": "^4.0.1",
-    "@types/storybook__react": "^4.0.1"
+    "@babel/core": "^7.4.0",
+    "@storybook/addon-knobs": "^5.0.5",
+    "@storybook/react": "^5.0.5",
+    "@types/storybook__addon-knobs": "^4.0.4",
+    "@types/storybook__react": "^4.0.1",
+    "babel-loader": "^8.0.5"
   },
   "dependencies": {
     "@types/history": "^4.7.2",
-    "@types/react": "^16.8.4",
-    "@types/react-dom": "^16.8.2",
-    "@types/react-router": "^4.4.4",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
+    "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.1",
-    "history": "4.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
+    "history": "4.9.0",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "@react-hero/form": "file:../packages/form",
+    "@react-hero/modal": "file:../packages/modal",
     "@react-hero/router-view": "file:../packages/router-view"
   }
 }
