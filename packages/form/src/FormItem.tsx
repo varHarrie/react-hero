@@ -22,8 +22,8 @@ export default function FormItem (props: Props) {
     [name, store, valueGetter]
   )
 
-  useFieldChange(store, name, (s, n) => {
-    setValue(s.get(n))
+  useFieldChange(store, name, () => {
+    setValue(store!.get(name!))
   })
 
   let child: any = children

@@ -37,9 +37,9 @@ export default function FormField (props: Props) {
     [name, store, valueGetter]
   )
 
-  useFieldChange(store, name, (s, n) => {
-    setValue(s.get(n))
-    setError(s.error(n))
+  useFieldChange(store, name, () => {
+    setValue(store!.get(name!))
+    setError(store!.error(name!))
   })
 
   let child: any = children

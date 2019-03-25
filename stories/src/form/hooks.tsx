@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean, number } from '@storybook/addon-knobs'
-import { Form, FormStore } from '@react-hero/form'
+import { Form, useFormChange, useFormStore } from '@react-hero/form'
 
-storiesOf('Components', module).add('Form', () => {
-  const store = new FormStore(
+function App () {
+  const store = useFormStore(
     {
       username: 'Default',
       password: '',
@@ -16,26 +16,27 @@ storiesOf('Components', module).add('Form', () => {
     },
     {
       username: (val) => !!val.trim() || 'Name is required',
+      password: (val) => !!val.trim() || 'Password is required',
       'contact.phone': (val) => /[0-9]{11}/.test(val) || 'Phone is invalid',
       'contact.address': (val) => !!val.trim() || 'Address is required'
     }
   )
 
-  store.subscribe((name) => {
+  useFormChange(store, (name) => {
     console.log('change', name, store.get(name))
   })
 
-  const onReset = (e: React.MouseEvent) => {
+  const onReset = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault()
     store.reset()
-  }
+  }, [])
 
-  const onSubmit = (e: React.MouseEvent) => {
+  const onSubmit = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault()
 
     const [error, values] = store.validate()
     console.log(error, values)
-  }
+  }, [])
 
   return (
     <Form
@@ -70,4 +71,8 @@ storiesOf('Components', module).add('Form', () => {
       </Form.Field>
     </Form>
   )
+}
+
+storiesOf('Components/Form', module).add('hooks', () => {
+  return <App />
 })
