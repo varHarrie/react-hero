@@ -1,11 +1,14 @@
 import * as React from 'react'
-import ModalContext, { ModalComponent } from './ModalContext'
+
+import ModalContext from './ModalContext'
+import { ModalComponentType } from './types'
 
 type ModalData = {
   key: number
   visible: boolean
   payload: any
-  component: ModalComponent<any>
+  component: ModalComponentType<any>
+  onHide: () => void
 }
 
 export interface Props {
@@ -17,8 +20,8 @@ export default function ModalProvider (props: Props) {
   const { children, container: Container = React.Fragment } = props
   const [modals, setModals] = React.useState<ModalData[]>([])
 
-  const mount = React.useCallback((key: number, component: ModalComponent<any>) => {
-    const modal = { key, component, visible: false, payload: {} }
+  const mount = React.useCallback((key: number, component: ModalComponentType<any>, onHide) => {
+    const modal = { key, component, visible: false, payload: {}, onHide }
     setModals([...modals, modal])
   }, [])
 
@@ -48,8 +51,8 @@ export default function ModalProvider (props: Props) {
     <ModalContext.Provider value={context}>
       {children}
       <Container>
-        {modals.map(({ visible, payload, component: Modal }) => (
-          <Modal visible={visible} {...payload} />
+        {modals.map(({ payload, component: Modal, ...rest }) => (
+          <Modal {...payload} {...rest} />
         ))}
       </Container>
     </ModalContext.Provider>

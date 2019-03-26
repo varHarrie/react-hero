@@ -1,5 +1,9 @@
 import * as React from 'react'
-import ModalContext, { ModalComponent } from './ModalContext'
+
+import ModalContext from './ModalContext'
+import { ModalComponentProps, ModalComponentType } from './types'
+
+type ModalOwnProps<P> = Pick<P, Exclude<keyof P, keyof ModalComponentProps>>
 
 let currentKey = 0
 
@@ -7,29 +11,36 @@ function generateKey () {
   return currentKey++
 }
 
-export default function useModal<P extends Object = any> (component: ModalComponent<P>) {
+export default function useModal<P extends ModalComponentProps = any> (
+  component: ModalComponentType<P>
+) {
   const key = React.useMemo(generateKey, [])
-  const [visible, setVisible] = React.useState(false)
   const { mount, unmount, show: showModal, hide: hideModal } = React.useContext(ModalContext)
 
-  const show = React.useCallback((payload: P) => {
-    // ???
+  const [visible, setVisible] = React.useState(false)
+  const refPayload = React.useRef({})
+
+  const show = React.useCallback((payload?: ModalOwnProps<P>) => {
+    refPayload.current = payload || {}
     setVisible(true)
-    showModal(key, payload)
   }, [])
 
   const hide = React.useCallback(() => {
     setVisible(false)
-    hideModal(key)
   }, [])
 
   React.useEffect(() => {
-    mount(key, component)
-
-    return () => {
-      unmount(key)
-    }
+    mount(key, component, hide)
+    return () => unmount(key)
   }, [])
+
+  React.useEffect(() => {
+    if (visible) {
+      showModal(key, refPayload.current)
+    } else {
+      hideModal(key)
+    }
+  }, [visible])
 
   return { visible, show, hide }
 }
