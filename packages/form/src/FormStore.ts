@@ -23,6 +23,13 @@ export default class FormStore<T extends Object = any> {
     this.initialValues = values as any
     this.values = deepCopy(values) as any
     this.rules = rules
+
+    this.get = this.get.bind(this)
+    this.set = this.set.bind(this)
+    this.reset = this.reset.bind(this)
+    this.error = this.error.bind(this)
+    this.validate = this.validate.bind(this)
+    this.subscribe = this.subscribe.bind(this)
   }
 
   private notify (name: string) {
