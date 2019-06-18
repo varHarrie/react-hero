@@ -8,6 +8,7 @@ React toolkit.
 
 - [Form](./packages/form/README.md) `@react-hero/form`
 - [RouterView](./packages/router-view/README.md) `@react-hero/router-view`
+- [Modal](./packages/modal/README.md) `@react-hero/modal`
 
 # License
 
