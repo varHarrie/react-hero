@@ -41,13 +41,13 @@
     "react-router": ">=4.0.0"
   },
   "devDependencies": {
-    "@types/react": "^16.8.4",
-    "@types/react-router": "^4.4.4",
-    "rollup": "^1.2.2",
+    "@types/react": "^16.8.20",
+    "@types/react-router": "^5.0.2",
+    "rollup": "^1.15.6",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.3",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "typescript": "^3.3.3"
+    "typescript": "^3.5.2"
   }
 }
