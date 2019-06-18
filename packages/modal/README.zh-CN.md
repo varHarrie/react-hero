@@ -12,7 +12,7 @@ yarn add @react-hero/modal
 
 ## 基础用法
 
-在跟组件中使用`ModalProvider`：
+在根组件中使用`ModalProvider`：
 
 ```javascript
 function App() {
@@ -28,7 +28,7 @@ function App() {
 
 ```javascript
 function DemoView() {
-  const { visible, show, hide } = useModal(Modal)
+  const { visible, show, hide } = useModal(MyModal)
 
   const onShow = React.useCallback(() => {
     show({ title: 'Modal Title' })
@@ -44,6 +44,33 @@ function DemoView() {
       <button onClick={onShow}>open</button>
       <button onClick={onHide}>hide</button>
     </div>
+  )
+}
+```
+
+模态窗口组件：
+
+```javascript
+const modalStyles = (visible) => ({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  padding: '30px',
+  display: visible ? 'block' : 'none',
+  background: '#fff',
+  border: '1px solid #ddd',
+  transform: 'translate(-50%, -50%)'
+})
+
+function MyModal(props: ModalProps) {
+  const { visible, title, onHide } = props
+
+  return ReactDOM.createPortal(
+    <div style={modalStyles(visible)}>
+      <div>{title}</div>
+      <button onClick={onHide}>close</button>
+    </div>,
+    document.body
   )
 }
 ```

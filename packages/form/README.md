@@ -47,7 +47,7 @@ class App extends React.Component {
 
 ## Simple Field
 
-`Form.Item` is a Simplified version of `Form.Field`, without any extra nodes.
+`Form.Item` is a simplified version of `Form.Field`, without any extra nodes.
 
 ```javascript
 <Form store={this.store}>
