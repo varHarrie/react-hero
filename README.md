@@ -1,3 +1,5 @@
+# **Notice: @react-hero/form has been moved to a new repository [react-hero-form](https://github.com/varHarrie/react-hero-form).**
+
 # react-hero
 
 React toolkit.
